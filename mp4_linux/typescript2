@@ -1,0 +1,136 @@
+Script started on Tue 05 May 2020 11:16:58 AM EDT
+tuser@tutor-vserver:~$ ssh mikehj24@users.cs.umb.edu
+mikehj24@users.cs.umb.edu's password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-171-generic x86_64)
+
+66 packages can be updated.
+61 updates are security updates.
+
+
+6 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+Authorized users only.
+
+Contact: operator@cs.umb.edu or 617-287-6480
+
+You have new mail.
+Last login: Tue May  5 10:46:13 2020 from 75.69.60.201
+mikehj24@itserver6:~$ script typ[K[K[K[K[K[K[K[K[K[Kcd cs4[K341/mp4_linux
+mikehj24@itserver6:~/cs341/mp4_linux$ make clean
+rm -f *.o *.syms *.lnx core syms
+mikehj24@itserver6:~/cs341/mp4_linux$ o[Kpwd
+/home/mikehj24/cs341/mp4_linux
+mikehj24@itserver6:~/cs341/mp4_linux$ ls -lg
+total 72
+-rw-r--r-- 1 cs341-1G  8704 Apr 30 18:27 charGen1.c
+-rw-r--r-- 1 cs341-1G 11097 May  5 10:52 made
+-rw-r--r-- 1 cs341-1G  2412 Apr 30 18:27 makefile
+-rw-r--r-- 1 cs341-1G   968 May  5 10:52 mean
+-rw-r--r-- 1 cs341-1G  2409 Apr 30 18:27 measure.c
+-rw-r--r-- 1 cs341-1G  2272 Apr 30 18:27 timepack.h
+-rw-r--r-- 1 cs341-1G  4396 May  5 11:15 timepack_sapc.c
+-rw-r--r-- 1 cs341-1G  1934 Apr 30 18:27 timer.c
+-rw-r--r-- 1 cs341-1G 12406 May  5 11:03 typescript1
+-rw-r--r-- 1 cs341-1G   968 May  3 13:08 typescript1-remote
+mikehj24@itserver6:~/cs341/mp4_linux$ make C=measure
+gcc -gdwarf-2 -gstrict-dwarf -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -I/home/cheungr/serl/tutor-linux/include -c -o measure.o measure.c
+gcc -gdwarf-2 -gstrict-dwarf -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -I/home/cheungr/serl/tutor-linux/include -c -o timepack_sapc.o timepack_sapc.c
+ld -m elf_i386 -N -Ttext 100100 -o measure.lnx \
+	/home/cheungr/serl/tutor-linux/libc_tmp/startup0.o /home/cheungr/serl/tutor-linux/libc_tmp/startup.o \
+	measure.o timepack_sapc.o /home/cheungr/serl/tutor-linux/libc_tmp/libc.a
+rm -f syms;nm -n measure.lnx>measure.syms;ln -s measure.syms syms
+mikehj24@itserver6:~/cs341/mp4_linux$ logout
+Connection to users.cs.umb.edu closed.
+tuser@tutor-vserver:~$ scp mikehj24@users.cs.umb.edu:cs341/mp4_linux/measure.* . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K.
+mikehj24@users.cs.umb.edu's password: 
+measure.c                                       0%    0     0.0KB/s   --:-- ETAmeasure.c                                     100% 2409     2.4KB/s   00:00    
+measure.lnx                                     0%    0     0.0KB/s   --:-- ETAmeasure.lnx                                   100%   22KB  21.5KB/s   00:00    
+measure.o                                       0%    0     0.0KB/s   --:-- ETAmeasure.o                                     100% 6052     5.9KB/s   00:00    
+measure.syms                                    0%    0     0.0KB/s   --:-- ETAmeasure.syms                                  100% 1535     1.5KB/s   00:00    
+tuser@tutor-vserver:~$ mtip -f measure
+For command help, type ~?
+For help on args, rerun without args
+Can't find file measure!!!
+error in arg measure
+tuser@tutor-vserver:~$ 
+tuser@tutor-vserver:~$ mtip -f measure.lnx
+For command help, type ~?
+For help on args, rerun without args
+Code starts at 0x100100
+Using board # 1 
+Please type <CR> to confirm console setting: 
+Setting console dev to COM2Console: colour EGA+ 80x25
+COM1 at 0x03f8 (irq = 4) is a 16550A
+COM2 at 0x02f8 (irq = 3) is a 16550A
+
+                 Welcome to UMB Tutor for the PC
+   UMB Tutor is a 32-bit protected-mode PC debugger/downloader,
+       based on Linux, UMB Tutor for m68k, and remote gdb.
+UMB Tutor is free software and you are welcome to distribute copies
+of it under certain conditions.  There is no warranty for this program.
+The copyright and warranty provisions follow the Gnu general public
+license, available for view in gdb and elsewhere.  Full sources available.
+--bugs, suggestions, questions to eoneil@cs.umb.edu
+
+Exception 3 at EIP=00057a9b: Breakpoint
+Tutor> ~downloading measure.lnx
+
+.......Done.
+
+Download done, setting EIP to 100100.
+Tutor> go 100100
+Calling set_intr_gate (irq = 3, n = 0x23) to arm interrupt...
+Commanding PIC to interrupt CPU for irq 3 (COM2_IRQ)
+enabling receiver interrupts in UART...
+...done, entering almost-infinite loop
+
+time interval= 33779121 us for char=A
+time interval= 988657 us for char=B
+time interval= 1043582 us for char=C
+time interval= 988657 us for char=D
+time interval= 988657 us for char=E
+time interval= 1043582 us for char=F
+time interval= 988657 us for char=G
+time interval= 988657 us for char=0
+time interval= 2032239 us for char=1
+time interval= 1977314 us for char=2
+time interval= 2032239 us for char=3
+time interval= 2032239 us for char=4
+time interval= 1977314 us for char=5
+time interval= 2032239 us for char=6
+time interval= 1977314 us for char=a
+time interval= 3020897 us for char=b
+time interval= 3020897 us for char=c
+time interval= 2965971 us for char=d
+time interval= 3020897 us for char=e
+time interval= 3020897 us for char=f
+time interval= 3020897 us for char=g
+time interval= 3020897 us for char=M
+time interval= 54925 us for char=N
+time interval= 109850 us for char=O
+time interval= 54925 us for char=P
+time interval= 54925 us for char=Q
+time interval= 109850 us for char=R
+time interval= 54925 us for char=S
+time interval= 109850 us for char=0
+time interval= 54925 us for char=1
+time interval= 109850 us for char=2
+time interval= 109850 us for char=3
+time interval= 54925 us for char=4
+time interval= 109850 us for char=5
+time interval= 109850 us for char=6
+time interval= 54925 us for char=m
+time interval= 109850 us for char=n
+time interval= 164776 us for char=o
+time interval= 109850 us for char=p
+time interval= 54925 us for char=q
+time interval= 54925 us for char=r
+time interval= 109850 us for char=s
+time interval= 72446604 us for char=
+Quit handler: 
+killing process 1850 Leaving board #1
+tuser@tutor-vserver:~$ exit
+exit
+
+Script done on Tue 05 May 2020 11:23:24 AM EDT
